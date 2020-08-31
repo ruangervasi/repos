@@ -1,10 +1,13 @@
 import React from 'react';
+import { Container } from './styles';
+import { Link } from 'react-router-dom';
 
-export default function Repositorio() {
+export default function Repositorio({match}) {
         return (
-            <div>
-                <h1>Repo</h1>
-            </div>
-        );
+                <Container>
+                        Repositorio: <span>{decodeURIComponent(match.params.repositorio)}</span>
+                        
+                </Container>
+        )
 }
 
