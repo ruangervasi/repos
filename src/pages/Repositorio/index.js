@@ -10,12 +10,14 @@ const [repositorio, setRepositorio] = useState({});
 const [issues, setIssues] = useState([]);
 const [loading, setLoading] = useState(true);
 const [page, setPage] = useState(1);
-const [stateIssues, setStateIssues] = useState([
+const [stateIssues, setStateIssues] = useState([]);
+const [filterIndex, setFilterIndex] = useState(0);
+
+setStateIssues([
     {state: 'all', label: 'Todas', active: true},
     {state: 'open', label: 'Abertas', active: false},
     {state: 'closed', label: 'Fechadas', active: false},
-]);
-const [filterIndex, setFilterIndex] = useState(0);
+])
 
 useEffect(() => {
     async function load(){
