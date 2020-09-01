@@ -10,7 +10,7 @@ const [repositorio, setRepositorio] = useState({});
 const [issues, setIssues] = useState([]);
 const [loading, setLoading] = useState(true);
 const [page, setPage] = useState(1);
-const stateIssues = useState([
+const [stateIssues,setStateIssues] = useState([
         {state: 'all', label: 'Todas', active: true},
         {state: 'open', label: 'Abertas', active: false},
         {state: 'closed', label: 'Fechadas', active: false},
@@ -25,7 +25,7 @@ useEffect(() => {
                 api.get(`/repos/${nomeRepo}`),
                 api.get(`/repos/${nomeRepo}/issues`, {
                         params: {
-                                state: 'all',
+                                state: 'open',
                                 per_page: 5,
                                 page: 1
                         }
