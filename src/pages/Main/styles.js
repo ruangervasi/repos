@@ -98,7 +98,7 @@ export const DeleteButton = styled.button.attrs({
     type: 'button'
 })`
     margin-left: 6px;
-    background- transparent;
+    background: transparent;
     color: #0D2636;
     border: 0;
     padding: 8px 7px;
