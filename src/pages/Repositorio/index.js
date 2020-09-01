@@ -10,27 +10,24 @@ const [repositorio, setRepositorio] = useState({});
 const [issues, setIssues] = useState([]);
 const [loading, setLoading] = useState(true);
 const [page, setPage] = useState(1);
-const [stateIssues, setStateIssues] = useState([]);
+const stateIssues = useState([
+        {state: 'all', label: 'Todas', active: true},
+        {state: 'open', label: 'Abertas', active: false},
+        {state: 'closed', label: 'Fechadas', active: false},
+    ]);
 const [filterIndex, setFilterIndex] = useState(0);
-
-setStateIssues([
-    {state: 'all', label: 'Todas', active: true},
-    {state: 'open', label: 'Abertas', active: false},
-    {state: 'closed', label: 'Fechadas', active: false},
-])
 
 useEffect(() => {
     async function load(){
         const nomeRepo = decodeURIComponent(match.params.repositorio);
-    
-        
+            
         const [repositorioData, issuesData] = await Promise.all([
                 api.get(`/repos/${nomeRepo}`),
                 api.get(`/repos/${nomeRepo}/issues`, {
                         params: {
-                                state: stateIssues.find(f => f.active).state,
+                                state: 'all',
                                 per_page: 5,
-                                page: page
+                                page: 1
                         }
                 })
         ])
@@ -40,7 +37,7 @@ useEffect(() => {
         setLoading(false);
     }
     load();
-}, [match.params.repositorios]);
+}, [match.params.repositorio]);
 
 useEffect(() => {
     async function loadIssues(){
